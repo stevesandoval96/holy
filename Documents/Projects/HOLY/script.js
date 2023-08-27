@@ -1,3 +1,28 @@
+//Generates a Random Index (To use in bible object)
+function getRandomBibleIndex() {
+    let randomNumber = Math.floor(Math.random() * bible.verses.length + 1);
+    return randomNumber;
+}
+
+//Generates and Tracks Shown Verses
+//Tracks Shown Verse
+let verseChaptersShownArr = [];
+
+//Generates Random Verse and Checks For Shown. If Shown before, generates a different verse to show.
+const displayAndTrackVerse = () => {
+    let randomNumber = getRandomBibleIndex();
+    let randomVerseChapter = bible.verses[randomNumber].chapter;
+    let randomVerse = bible.verses[randomNumber].verse;
+    if (!verseChaptersShownArr.includes(randomVerseChapter)) {
+        //Show Verse
+        alert(`${randomVerse}`);
+        //Adds Verse Chapter To Shown Array To Check For Duplicates Later
+        verseChaptersShownArr.push(randomVerseChapter);
+    } else {
+        return displayAndTrackVerse();
+    }
+};
+
 const bible = {
     verses: [
         //Marriage -> Pertaining to Women
